@@ -11,7 +11,7 @@ Input: numbers={2, 7, 11, 15}, target=9
 Output: index1=1, index2=2
 */
 
-
+###C++
 class Solution {
     public:
         vector<int> twoSum(vector<int> &num, int target) {
@@ -31,3 +31,33 @@ class Solution {
             return result;
         }
 };
+---
+###C#
+public class Solution {
+    public int[] TwoSum(int[] nums, int target) {
+        //nums is not null nums.Length should larger than 1
+        if(nums == null || nums.Length < 2) return null;
+        //define Length of nums is a const
+        int LEN = nums.Length;
+        //define a hash map
+        Dictionary<int,int> map = new Dictionary<int,int>();
+        //add nums[i] and index to key-value
+        for(int i=0;i<LEN;i++)
+        {
+            //if x + nums[i] = target
+            int x = target - nums[i];
+            //if map.ContainsKey(nums[i]) == true
+            if(map.ContainsKey(nums[i])&&nums[i] != x)
+            {
+                continue;
+            }
+            if((map.ContainsKey(x)))
+            {
+                return new int[2]{map[x]+1,i+1};
+            }
+            //nums[i] != nums[j]
+            map.Add(nums[i],i);
+        }
+        return null;
+    }
+}
