@@ -1,0 +1,51 @@
+You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+
+Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+Output: 7 -> 0 -> 8
+
+Hide Tags Linked List Math
+
+##c#
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+
+     public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
+        {
+            if (l1 == null || l2 == null) return null;
+            ListNode pointer_l1 = l1;
+            ListNode pointer_l2 = l2;
+            int x = (pointer_l1.val + pointer_l2.val) >= 10 ? 1 : 0;
+            int y = (pointer_l1.val + pointer_l2.val) % 10;
+            ListNode pointter_result = new ListNode(y);
+            ListNode pointer_of_node = pointter_result;
+            while (pointer_l1.next != null || pointer_l2.next != null)
+            {
+                y = 0;
+                if (pointer_l1.next != null)
+                {
+                    pointer_l1 = pointer_l1.next;
+                    y += pointer_l1.val;
+                }
+                if (pointer_l2.next != null)
+                {
+                    pointer_l2 = pointer_l2.next;
+                    y += pointer_l2.val;
+                }
+                pointer_of_node.next = new ListNode((x + y) % 10);
+                pointer_of_node = pointer_of_node.next;
+                x = (x + y) >= 10 ? 1 : 0;
+            }
+            if(x == 1)
+            {
+                pointer_of_node.next = new ListNode(1);
+            }
+            return pointter_result;
+        }
+}
