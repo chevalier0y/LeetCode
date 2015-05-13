@@ -1,0 +1,82 @@
+public class Solution {
+    public double FindMedianSortedArrays(int[] nums1, int[] nums2) {
+        if(nums1 == null || nums2 == null)
+        {
+            if(nums2 != null)
+            {
+                int n = nums2.Length;
+                int mid1 = (n-1)/2;
+                int mid2 = mid1 + (n-1)&1;
+                return (nums2[mid1]+nums2[mid2])/2.0;
+            }
+            if(nums1 != null)
+            {
+                int m = nums1.Length;
+                int mid1 = (m-1)/2;
+                int mid2 = mid1 + (m-1)&1;
+                return (nums1[mid1]+nums1[mid2])/2.0;
+            }
+            return null;
+        }
+        int m = nums1.Length;
+        int n = nums2.Length;
+        int mid1 = (n+m-1)/2;
+        int mid2 = mid1 + (n+m-1)&1;
+        int [] num1;
+        int [] num2;
+        if(nums1[m-1] <= nums2[0] || nums1[0] >= nums2[n-1])
+        {
+            if(nums1[m-1]<= nums2[0])
+            {
+                num1 = nums1;
+                num2 = nums2;
+            }
+            else
+            {
+                num1 = nums2;
+                num2 = nums1;
+            }
+            int delta = mid1-(num1.Length-1);
+            int last = num1.Length-1;
+            if(delta > 0)
+            {
+                return mid2==mid1?(double)num2[delta-1]:(num2[delta-1]+num2[delta])/2.0;
+            }
+            if(delta == 0)
+            {
+                return mid2==mid1?(double)num1[m-1]:(num1[last]+num2[0])/2.0;
+            }
+            if(delta < 0)
+            {
+                return mid2==mid1?(double)num1[mid1]:(num1[mid1]+num1[mid2])/2.0;
+            }
+        }
+        if(((nums1[0]<nums2[0])&&
+            (nums2[0]<nums1[m-1])&&
+            (nums1[m-1]<nums2[n-1]))||
+            ((nums1[m-1]>nums2[n-1])&&
+            (nums2[n-1]>nums1[0])&&
+            (nums1[0]>nums2[0])))
+        {
+            if((nums1[0]<nums2[0])&&
+            (nums2[0]<nums1[m-1])&&
+            (nums1[m-1]<nums2[n-1]))
+            {
+                num1 = nums1;
+                num2 = nums2;
+            }
+            else
+            {
+                num1 = nums2;
+                num2 = nums1;
+            }
+            
+                
+        }
+    }
+    public int BinarySearchEric(int[] num,int x)
+    {
+        
+    }
+  
+}
