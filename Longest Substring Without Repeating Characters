@@ -1,26 +1,44 @@
 //C#
 public class Solution {
     public int LengthOfLongestSubstring(string s) {
-        if(string.IsNullOrEmpty(s))return 0;
-        int left = 0;
+        if(string.IsNullOrEmpty(s))
+            return 0;
+        if(s.Length == 1)
+            return 1;
+        //最长的子字符串的长度
         int len = 0;
+        //最长子字符串的左侧index，采用[,)的形式
+        int left = 0;
+        //将s[i],i存入hash map，可以快速判断s[i]是否在子字符串中。
         Dictionary<char,int> map = new Dictionary<char,int>();
-        for(int i=0;i<s.Length;i++)
+        for(int i = 0; i < s.Length ; i++)
         {
+            //hash map中存在s[i]
             if(map.ContainsKey(s[i]))
             {
-                if(map[s[i]]<left)
+                //如果key = s[i]的value不在子字符串中
+                //则说明子字符串暂时中不包含该s[i]
+                if(left > map[s[i]])
                 {
+                    //当前s[i]需要放入子字符串
                     map[s[i]] = i;
                     continue;
                 }
+                //i-left是将右边界-左边界，得到字符串长度
+                //与之前最大的长度比较，选取较大的
                 len = (i-left)>len?(i-left):len;
+                //从新确定左边界
+                //产生新的子字符串
+                //由于新的字符串包含刚加入的s[i]
+                //所以原有的s[j]==s[i] (j<i)，就作为left-1；
                 left = map[s[i]]+1;
+                //修改map中的s[i]的index
                 map[s[i]] = i;
                 continue;
             }
             map.Add(s[i],i);
         }
-        return (s.Length-left)>len?(s.Length-left):len;
+        //考虑到最后不重复的情况，所以结果应该是最后一个的index+1 -left
+        return (s.Length - left)>len?(s.Length - left):len;
     }
 }
