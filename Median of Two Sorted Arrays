@@ -70,13 +70,20 @@ public class Solution {
                 num1 = nums2;
                 num2 = nums1;
             }
-            
+            int last = num1.Length -1;
+            int num2FirstInnum1 = QuickSearchIndex(num1,num2[0]);
+            if(mid1<num2FirstInnum1)
+            {
+                return mid2==mid1?(double)num1[mid1]:(num1[mid1]+(num1[mid2]<num2[0]?num1[mid2]:num2[0]))/2.0;
+            }
+            int num1LastInnum2 = QuickSearchIndex(num2,num1[last]);
                 
         }
     }
-    public int BinarySearchEric(int[] num,int x)
+    //Find x index,if x between (a,b) return a's index +1;
+    public int QuickSearchIndex(int[] num,int x)
     {
-        
+        return 0;
     }
   
 }
