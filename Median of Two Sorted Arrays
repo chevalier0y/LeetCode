@@ -4,19 +4,19 @@ public class Solution {
         {
             if(nums2 != null)
             {
-                int n = nums2.Length;
-                int mid1 = (n-1)/2;
-                int mid2 = mid1 + (n-1)&1;
-                return (nums2[mid1]+nums2[mid2])/2.0;
+                int len1 = nums2.Length;
+                int mid1_1 = (len1-1)>>1;
+                int mid2_1 = mid1_1 + (len1-1)&1;
+                return (nums2[mid1_1]+nums2[mid2_1])/2.0;
             }
             if(nums1 != null)
             {
-                int m = nums1.Length;
-                int mid1 = (m-1)/2;
-                int mid2 = mid1 + (m-1)&1;
-                return (nums1[mid1]+nums1[mid2])/2.0;
+                int len2 = nums1.Length;
+                int mid1_2 = (len2-1)>>1;
+                int mid2_2 = mid1_2 + (len2-1)&1;
+                return (nums1[mid1_2]+nums1[mid2_2])/2.0;
             }
-            return null;
+            return 0.0;
         }
         int m = nums1.Length;
         int n = nums2.Length;
@@ -44,7 +44,7 @@ public class Solution {
             }
             if(delta == 0)
             {
-                return mid2==mid1?(double)num1[m-1]:(num1[last]+num2[0])/2.0;
+                return mid2==mid1?(double)num1[last]:(num1[last]+num2[0])/2.0;
             }
             if(delta < 0)
             {
@@ -84,6 +84,7 @@ public class Solution {
             else
             {
                 //重叠的部分
+                return 0.0;
             }
         }
         if((nums1[0]<nums2[0]&&nums2[n-1]<nums1[m-1])||
@@ -111,12 +112,15 @@ public class Solution {
             else
             {
                 //重叠部分
+                return 0.0;
             }
         }
+        return 0.0;
     }
     //Find x index,if x between (a,b) return a's index +1;
     public int QuickSearchIndex(int[] num,int x)
     {
+        int mid1 = (num.Length-1)/2;
         return 0;
     }
   
