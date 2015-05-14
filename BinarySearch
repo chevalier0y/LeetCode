@@ -1,0 +1,22 @@
+public int BinarySearch(int[] array,int left,int right,int e)
+{
+  while(left<=right)
+  {
+    int mid = (left+right)>>1;
+    if(e == array[mid])
+    {
+      return mid;
+    }
+    if(e > array[mid])
+    {
+      left = mid + 1;
+      continue;
+    }
+    if(e < array[mid])
+    {
+      right = mid - 1;
+      continue;
+    }
+  }
+  return -1;
+}
