@@ -125,3 +125,101 @@ public class Solution {
     }
   
 }
+
+
+public class Solution {
+    public double FindMedianSortedArrays(int[] nums1, int[] nums2) {
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        int m = nums1.Length;
+        int n = nums2.Length;
+        if(m == 0 && n ==0){return 0.0;}
+        if(m == 0){SimplifyFindMedian(nums2,n);}
+        if(n == 0){SimplifyFindMedian(nums1,m);}
+        //now n+m must not less than 2
+        int mid = (n+m-1)>>1;
+        int mid2 = (m+n)%2==0?mid+1:mid;
+        while(i+j < mid)
+        {
+            if(i<m && j<n)
+            {
+                if(nums1[i] == nums2[j])
+                {
+                    i++;
+                    j++;
+                    k=0;
+                    continue;
+                }
+                if(nums1[i] > nums2[j])
+                {
+                    j++;
+                    k=1;
+                    continue;
+                }
+                if(nums1[i] < nums[j])
+                {
+                    i++;
+                    k=2;
+                    continue;
+                }
+            }
+            if(i == m)
+            {
+                if((m+n)%2==1){return nums2[(m+n-1)>>1 - m];}
+                return (nums2[(m+n-1)>>1-m]+nums2[(m+n-1)>>1-m+1])/2.0;
+            }
+            if(j == n)
+            {
+                if((m+n)%2==1){return nums1[(m+n-1)>>1 - n];}
+                return (nums1[(m+n-1)>>1-n]+nums1[(m+n-1)>>1-n+1])/2.0;
+            }
+            if((m+n)%2==1)
+            {
+                if((i+j)==mid)
+                {
+                    if(k == 1){return nums2[j];}
+                    return nums1[i];
+                }
+                if((i+j)>mid)
+                {
+                    
+                }
+            }
+        }
+    }
+    //if nums1 or nums2 have Length==0
+    public double SimplifyFindMedian(int[] num,int length)
+    {
+        if(length == 1){return (double)num[0];}
+        if(length%2==0){return (num[(length-1)>>1]+num[(length-1)>>1 +1])/2.0;}
+        return (double)num[(length-1)>>1];
+    }
+    
+    //Find x index,if x between (a,b) return a's index +1;
+    public int QuickSearchIndex(int[] num,int x)
+    {
+        int left = 0;
+        int right = num.Length -1;
+        while(left<right)
+        {
+            int mid = (left+right)>>1;
+            if(x == num[mid])
+            {
+                return mid+1;
+            }
+            if(x > num[mid])
+            {
+                left = mid+1;
+                continue;
+            }
+            if(x < num[mid])
+            {
+                right = mid-1;
+                continue;
+            }
+        }
+        return left+1;
+    }
+  
+}
