@@ -49,3 +49,51 @@ public class Solution {
             return pointter_result;
         }
 }
+
+v2
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int x) { val = x; }
+ * }
+ */
+ public class Solution
+    {
+        public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
+        {
+            if (l1 == null || l2 == null)
+            {
+                if (l1 != null)
+                {
+                    return l1;
+                }
+                if (l2 != null)
+                {
+                    return l2;
+                }
+            }
+
+            ListNode result = new ListNode(0);
+            int carry = 0;
+            ListNode pl1 = l1;
+            ListNode pl2 = l2;
+            ListNode presult = result;
+
+            while (pl1 != null || pl2 != null || carry == 1)
+            {
+                int a = pl1 != null ? pl1.val : 0;
+                int b = pl2 != null ? pl2.val : 0;
+                int n = carry + a + b;
+                presult.next = new ListNode(n % 10);
+                carry = n > 9 ? 1 : 0;
+
+                pl1 = pl1 != null ? pl1.next : null;
+                pl2 = pl2 != null ? pl2.next : null;
+                presult = presult.next;
+            }
+            return result.next;
+        }
+    }
