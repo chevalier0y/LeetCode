@@ -26,7 +26,8 @@ public class Solution {
                 }
                 //i-left是将右边界-左边界，得到字符串长度
                 //与之前最大的长度比较，选取较大的
-                len = (i-left)>len?(i-left):len;
+                //len = (i-left)>len?(i-left):len;
+                len = Math.Max((i-left),len);
                 //从新确定左边界
                 //产生新的子字符串
                 //由于新的字符串包含刚加入的s[i]
@@ -39,6 +40,7 @@ public class Solution {
             map.Add(s[i],i);
         }
         //考虑到最后不重复的情况，所以结果应该是最后一个的index+1 -left
-        return (s.Length - left)>len?(s.Length - left):len;
+        //return (s.Length - left)>len?(s.Length - left):len;
+        return Math.Max((s.Length - left),len);
     }
 }
